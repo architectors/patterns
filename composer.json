@@ -1,6 +1,6 @@
 {
-    "name": "igormartin/patterns",
-    "description": "Design patterns",
+    "name": "architectors/patterns",
+    "description": "Design patterns research",
     "type": "project",
     "license": "MIT",
     "autoload": {
