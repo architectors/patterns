@@ -1,11 +1,11 @@
 <?php
 
-namespace Patterns\Gof\Singletone\Traits;
+namespace Patterns\Gof\Singleton\Traits;
 
 /**
- * Trait Singletone
+ * Trait Singleton
  */
-trait Singletone
+trait Singleton
 {
     private static $instance;
 
@@ -14,7 +14,7 @@ trait Singletone
      * Get single instance of self
      * @return self
      */
-    public static function singletone() : self
+    public static function singleton() : self
     {
         if (!self::$instance instanceof self) {
             self::$instance = new self();
@@ -24,7 +24,7 @@ trait Singletone
     }
 
     /**
-     * Singletone constructor
+     * Singleton constructor
      * Must be private
      */
     private function __construct()
