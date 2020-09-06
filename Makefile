@@ -8,8 +8,8 @@ WORK_DIR=$(shell PWD)
 build:
 	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) --no-cache --force-rm .
 
-.PHONY: up # Create a docker container
-up:
+.PHONY: create # Create a docker container
+create:
 	docker create -i -p 127.0.0.1:9001:9000 --name $(CONTAINER_NAME) \
 	--mount type=bind,source=$(WORK_DIR),target=/patterns \
 	$(IMAGE_NAME):$(IMAGE_TAG)
