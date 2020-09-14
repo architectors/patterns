@@ -16,5 +16,7 @@
             "Patterns\\Tests\\": "tests"
         }
     },
-    "require-dev": {}
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*"
+    }
 }
