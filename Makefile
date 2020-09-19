@@ -42,4 +42,8 @@ bash:
 
 .PHONY: check-style # Check the code style
 check-style:
-	docker exec $(CONTAINER_NAME) ./vendor/bin/phpcs --standard=PSR2 --colors ./src
+	docker exec $(CONTAINER_NAME) composer check-style
+
+.PHONY: tests # Run unit tests
+tests:
+	docker exec $(CONTAINER_NAME) composer test
