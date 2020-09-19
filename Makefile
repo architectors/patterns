@@ -1,7 +1,8 @@
 IMAGE_NAME = architectors/patterns
-IMAGE_TAG  = latest
+IMAGE_TAG = latest
 CONTAINER_NAME = patterns
-WORK_DIR=$(shell PWD)
+WORK_DIR = $(shell PWD)
+APP_DIR = /patterns
 
 
 .PHONY: build # Build an image
@@ -11,7 +12,7 @@ build:
 .PHONY: create # Create a docker container
 create:
 	docker create -i -p 127.0.0.1:9001:9000 --name $(CONTAINER_NAME) \
-	--mount type=bind,source=$(WORK_DIR),target=/patterns \
+	--mount type=bind,source=$(WORK_DIR),target=$(APP_DIR) \
 	$(IMAGE_NAME):$(IMAGE_TAG)
 
 .PHONY: drop # Remove the docker container
@@ -26,6 +27,11 @@ start:
 stop:
 	docker stop $(CONTAINER_NAME)
 
+.PHONY: prune # Remove docker containers and the docker image
+prune:
+	make drop; \
+	docker rmi $(IMAGE_NAME):$(IMAGE_TAG)
+
 .PHONY: install # Install app dependencies
 install:
 	docker exec $(CONTAINER_NAME) composer install
@@ -34,7 +40,10 @@ install:
 bash:
 	docker exec -it $(CONTAINER_NAME) bash
 
-.PHONY: prune # Remove docker containers and the docker image
-prune:
-	make drop; \
-	docker rmi $(IMAGE_NAME):$(IMAGE_TAG)
+.PHONY: check-style # Check the code style
+check-style:
+	docker exec $(CONTAINER_NAME) composer check-style
+
+.PHONY: tests # Run unit tests
+tests:
+	docker exec $(CONTAINER_NAME) composer test
