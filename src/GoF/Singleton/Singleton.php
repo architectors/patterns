@@ -8,7 +8,7 @@ namespace Patterns\GoF\Singleton;
  */
 class Singleton
 {
-    private static ?self $instance;
+    private static ?self $instance = null;
 
 
     /**
