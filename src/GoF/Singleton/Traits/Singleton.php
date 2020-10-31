@@ -1,6 +1,6 @@
 <?php
 
-namespace Patterns\Gof\Singleton\Traits;
+namespace Patterns\GoF\Singleton\Traits;
 
 /**
  * Trait Singleton
