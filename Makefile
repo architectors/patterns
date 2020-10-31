@@ -5,12 +5,12 @@ WORK_DIR = $(shell PWD)
 APP_DIR = /patterns
 
 
-.PHONY: build # Build an image
-build:
+.PHONY: image # Build an image
+image:
 	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) --no-cache --force-rm .
 
-.PHONY: create # Create a docker container
-create:
+.PHONY: container # Create a docker container
+container:
 	docker create -i -p 127.0.0.1:9001:9000 --name $(CONTAINER_NAME) \
 	--mount type=bind,source=$(WORK_DIR),target=$(APP_DIR) \
 	$(IMAGE_NAME):$(IMAGE_TAG)
